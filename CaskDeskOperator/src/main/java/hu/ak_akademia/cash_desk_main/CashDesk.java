@@ -8,6 +8,7 @@ public class CashDesk {
 	private int idNumber;
 	private int limit;
 	private LocalDateTime entryTime;
+	// proba
 
 	private CashDesk(Builder builder) {
 		this.cashDeskName = builder.cashDeskName;

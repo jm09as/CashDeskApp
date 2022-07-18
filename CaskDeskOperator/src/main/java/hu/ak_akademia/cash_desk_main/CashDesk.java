@@ -3,7 +3,7 @@ package hu.ak_akademia.cash_desk_main;
 import java.time.LocalDateTime;
 
 public class CashDesk {
-
+// Na most akkor ez itt egy komment egyenesen Kínából.
 	private String cashDeskName;
 	private int idNumber;
 	private int limit;

@@ -62,6 +62,7 @@ class DeleteCashDeskOption extends AbstractMenuOption {
 			cashD = chooseCashDeskToDelete(list.get(0), cashD, con);
 //			System.out.println(cashD.getIdNumber());
 //			System.out.println(cashDesk.getIdNumber());
+			System.out.println("test");
 			if (cashD != null && cashDesk.getIdNumber() != cashD.getIdNumber()) {
 				deleteFromTable(cashD, deleteRegistry, con);
 				deleteFromTable(cashD, deleteCD, con);

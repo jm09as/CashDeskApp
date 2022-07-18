@@ -19,14 +19,6 @@ public class CashDesk {
 	public CashDesk() {
 	}
 
-
-	public CashDesk(String cashDeskName, int idNumber, int limit, LocalDateTime entryTime) {
-		this.cashDeskName = cashDeskName;
-		this.idNumber = idNumber;
-		this.limit = limit;
-		this.entryTime = entryTime;
-	}
-
 	public String getCashDeskName() {
 		return cashDeskName;
 	}

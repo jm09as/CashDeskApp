@@ -29,10 +29,6 @@ public class Setup extends HttpServlet {
 		request.getRequestDispatcher("setup.jsp").forward(request, response);
 	}
 
-//	List<MenuOption> menu() {
-//		return Menu.getInstance().getAllMenuOptions();
-//	}
-
 	CashDesk cashDesk() {
 		return CashDesk.builder() //
 				.withCashDeskName("Nincs megadva pénztár") //

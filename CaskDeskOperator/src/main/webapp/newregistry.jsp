@@ -9,8 +9,8 @@
 <body>
     <div>
 		<form action="newregistry" method="get">	
-			Add meg a bejegyzés nevét:<input type="text" name="name"> <br>	
-			Add meg a bejegyzés összegét:<input type="text" name="sum"> <br>
+			Add meg a bejegyzés nevét:<input type="text" name="name" required> <br>	
+			Add meg a bejegyzés összegét:<input type="number" name="sum" required> <br>
 			<input type="submit" value="tovább">
 		</form>
 	</div>

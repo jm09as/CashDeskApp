@@ -34,8 +34,8 @@ public class Result extends HttpServlet {
 		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 
-	String cashDesk(MenuOption mo) {
-		return mo.setup() == null ? "nincs kijelölve pénztár" : mo.setup().getCashDeskName();
-	}
+//	String cashDesk(MenuOption mo) {
+//		return mo.setup() == null ? "nincs kijelölve pénztár" : mo.setup().getCashDeskName();
+//	}
 
 }

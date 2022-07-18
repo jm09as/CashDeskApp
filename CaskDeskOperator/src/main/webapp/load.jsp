@@ -22,15 +22,3 @@
 	</div>
 </body>
 </html>
-<!-- <form action="/action_page.php" method="get"> -->
-<!--   <label for="browser">Choose your browser from the list:</label> -->
-<!--   <input list="browsers" name="browser" id="browser"> -->
-<!--   <datalist id="browsers"> -->
-<!--     <option value="Edge"> -->
-<!--     <option value="Firefox"> -->
-<!--     <option value="Chrome"> -->
-<!--     <option value="Opera"> -->
-<!--     <option value="Safari"> -->
-<!--   </datalist> -->
-<!--   <input type="submit"> -->
-<!-- </form> -->

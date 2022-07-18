@@ -33,6 +33,7 @@ public class SelectOption extends HttpServlet {
 
 	private void backToCashDeskMenu(HttpServletRequest request, HttpServletResponse response, MenuOption mo, String jsp)
 			throws ServletException, IOException {
+		System.out.println(mo.getName());
 		request.getRequestDispatcher(jsp).forward(request, response);
 	}
 
@@ -40,6 +41,7 @@ public class SelectOption extends HttpServlet {
 			throws ServletException, IOException {
 		var session = request.getSession(false);
 		session.setAttribute("mo", mo);
+		System.out.println(mo.getName());
 		request.getRequestDispatcher(jsp).forward(request, response);
 	}
 
@@ -47,6 +49,7 @@ public class SelectOption extends HttpServlet {
 			throws ServletException, IOException {
 		var session = request.getSession(false);
 		session.setAttribute("mo", mo);
+		System.out.println(mo.getName());
 		request.getRequestDispatcher(jsp).forward(request, response);
 
 	}
@@ -55,6 +58,7 @@ public class SelectOption extends HttpServlet {
 			throws ServletException, IOException {
 		var session = request.getSession(false);
 		session.setAttribute("mo", mo);
+		System.out.println(mo.getName());
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
 		List<String> list = mo.process(List.of(" "), cashDesk);
 		session.setAttribute("result", list);

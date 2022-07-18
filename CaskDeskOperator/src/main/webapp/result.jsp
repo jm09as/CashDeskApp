@@ -9,7 +9,7 @@
 <body>
 	<h4>Kérdőív</h4>
 	<div>
-		<c:forEach var="result" items="${sessionScope.result}">
+		<c:forEach var="result" items="${result}">
 			<li>${result}</li>
 		</c:forEach>
 	</div>

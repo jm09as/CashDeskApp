@@ -10,13 +10,13 @@
 	<h2>Menü</h2>
 	<div>
 		<form action="cashdesk" method="get">
-			<select name="nameid">
+<!-- 			<select name="nameid"> -->
 				<c:forEach var="MenuOption" items="${menu}">
-					<option value="${MenuOption}">${MenuOption.name}</option>
+					<button type="submit" name="nameid" value="${MenuOption}">${MenuOption.name}</button>
 				</c:forEach>
-			</select>
+<!-- 			</select> -->
 			<p>
-				<input type="submit" value="tovább">
+<!-- 				<input type="submit" value="tovább"> -->
 			</p>
 		</form>
 	</div>

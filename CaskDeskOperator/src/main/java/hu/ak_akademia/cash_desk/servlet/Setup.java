@@ -1,7 +1,9 @@
 package hu.ak_akademia.cash_desk.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +36,7 @@ public class Setup extends HttpServlet {
 				.withCashDeskName("Nincs megadva pénztár") //
 				.withLimit(0) //
 				.withIdNumber(Integer.MAX_VALUE) //
-				.withEntryTime(LocalDateTime.MAX) //
+				.withEntryTime(LocalDateTime.of(LocalDate.EPOCH, LocalTime.now())) //
 				.build();
 	}
 

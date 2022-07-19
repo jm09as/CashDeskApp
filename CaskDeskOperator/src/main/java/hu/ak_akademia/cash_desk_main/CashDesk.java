@@ -1,6 +1,8 @@
 package hu.ak_akademia.cash_desk_main;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class CashDesk {
 // Na most akkor ez itt egy komment egyenesen Kínából.
@@ -18,6 +20,10 @@ public class CashDesk {
 	}
 
 	public CashDesk() {
+	}
+
+	public Date getEntryDate() {
+		return Date.from(entryTime.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
 	public String getCashDeskName() {

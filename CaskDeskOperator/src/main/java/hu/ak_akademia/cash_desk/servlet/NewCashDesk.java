@@ -21,24 +21,21 @@ public class NewCashDesk extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var session = request.getSession(false);
-//		var id = Integer.parseInt(request.getParameter("nameid"));
-		var enumName = request.getParameter("nameid");
+		var enumName = request.getParameter("moenum");
+		System.out.println(enumName + "enumName cashdesk.java");
 		var moEnum = MenuOptions.valueOf(enumName);
 		var mo = Menu.getInstance().getMenuOption(moEnum);
-//		@SuppressWarnings("unchecked")
-//		var menu = (List<MenuOption>) session.getAttribute("menu");
 		var cashDesk = session.getAttribute("cdesk");
 		cashDesk = cashDesk == null ? new CashDesk() : (CashDesk) cashDesk;
-		System.out.println(enumName + " id");
-//		MenuOption mo = menu.get(id);
 		List<CashDesk> cashDesks = mo.getAllCashDesk();
 		session.setAttribute("cashDesks", cashDesks);
 		session.setAttribute("mo", mo);
 		session.setAttribute("cdesk", cashDesk);
+		session.setAttribute("moenum", moEnum);
 		switch (moEnum) {
-			case CREATE -> loadCashDeskOption(request, response, "cashdesk.jsp");
-			case LOAD -> loadCashDeskOption(request, response, "load.jsp");
-			case DELETE -> loadCashDeskOption(request, response, "delete.jsp");
+			case CREATE -> loadCashDeskOption(request, response, "setup");
+			case LOAD -> loadCashDeskOption(request, response, "setup");
+			case DELETE -> loadCashDeskOption(request, response, "setup");
 			case REGISTRY -> loadCashDeskOption(request, response, "registry");
 			case QUIT -> loadCashDeskOption(request, response, "");
 		}
@@ -47,8 +44,8 @@ public class NewCashDesk extends HttpServlet {
 	private void loadCashDeskOption(HttpServletRequest request, HttpServletResponse response, String jsp) throws ServletException, IOException {
 		CashDesk cashDesk = (CashDesk) request.getSession(false).getAttribute("cdesk");
 		MenuOption mo = (MenuOption) request.getSession(false).getAttribute("mo");
-		System.out.println(cashDesk + " cd");
-		System.out.println(mo + " mo");
+		System.out.println(cashDesk + " cd cashdesk.java");
+		System.out.println(mo + " mo cashdesk.java");
 		request.getRequestDispatcher(jsp).forward(request, response);
 	}
 

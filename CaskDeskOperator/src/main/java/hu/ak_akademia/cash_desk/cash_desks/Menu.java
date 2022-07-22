@@ -1,5 +1,7 @@
 package hu.ak_akademia.cash_desk.cash_desks;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
@@ -76,6 +78,12 @@ public class Menu implements MenuSercivePoint {
 			case REGISTRY -> new RegistryManagmentOption(); //
 			case QUIT -> EXIT;
 		};
+	}
+	
+	public CashDesk getLastModification(List<CashDesk> list) {
+		Comparator<LocalDateTime> ldt = LocalDateTime::compareTo;
+		return list.stream().sorted((cd1, cd2) -> ldt.compare(cd1.getEntryTime(), cd2.getEntryTime())) //
+				.toList().get(list.size() - 1);
 	}
 
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
 import hu.ak_akademia.cash_desk_main.MenuOption;
+import hu.ak_akademia.cash_desk_main.MenuOptions;
 
 @WebServlet("/result")
 public class Result extends HttpServlet {
@@ -28,14 +29,11 @@ public class Result extends HttpServlet {
 		list.add(request.getParameter("year")); //
 		list.add(request.getParameter("month")); //
 		list.add(request.getParameter("day")); //
-		List<String> result = mo.process(list, cashDesk);
-		session.setAttribute("result", result);
+		mo.process(list, cashDesk);
+//		session.setAttribute("result", result);
 		session.setAttribute("cdesk", cashDesk);
-		request.getRequestDispatcher("result.jsp").forward(request, response);
+		session.setAttribute("moenum", MenuOptions.LOAD);
+		request.getRequestDispatcher("setup").forward(request, response);
 	}
-
-//	String cashDesk(MenuOption mo) {
-//		return mo.setup() == null ? "nincs kijelölve pénztár" : mo.setup().getCashDeskName();
-//	}
 
 }

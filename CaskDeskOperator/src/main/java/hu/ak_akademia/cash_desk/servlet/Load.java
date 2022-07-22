@@ -24,11 +24,11 @@ public class Load extends HttpServlet {
 		var session = request.getSession(false);
 		var mo = (MenuOption) session.getAttribute("mo");
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
-		List<String> result = mo.process(list, cashDesk);
+		mo.process(list, cashDesk);
 		cashDesk = mo.setup();
-		session.setAttribute("result", result);
+//		session.setAttribute("result", result);
 		session.setAttribute("cdesk", cashDesk);
-		request.getRequestDispatcher("result.jsp").forward(request, response);
+		request.getRequestDispatcher("setup").forward(request, response);
 	}
 
 }

@@ -7,5 +7,7 @@ public interface MenuSercivePoint {
 	List<MenuOption> getAllMenuOptions();
 
 	MenuOption getMenuOption(int i);
+	
+	CashDesk getLastModification(List<CashDesk> list);
 
 }

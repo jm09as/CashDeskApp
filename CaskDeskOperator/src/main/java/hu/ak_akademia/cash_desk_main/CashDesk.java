@@ -5,12 +5,11 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class CashDesk {
-// Na most akkor ez itt egy komment egyenesen Kínából.
+	
 	private String cashDeskName;
 	private int idNumber;
 	private int limit;
 	private LocalDateTime entryTime;
-	// proba
 
 	private CashDesk(Builder builder) {
 		this.cashDeskName = builder.cashDeskName;

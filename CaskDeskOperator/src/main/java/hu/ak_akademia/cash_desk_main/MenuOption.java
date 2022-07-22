@@ -9,14 +9,10 @@ public interface MenuOption {
 
 	String getName();
 
-	int getId();
-
 	List<String> process(List<String> list,CashDesk cashD);
 
 	CashDesk setup();
 
-	List<CashDesk> getAllCashDesk();
-	
 	default void limitTester(int limit, int sum) {
 		if (LIMIT_TESTER.test(limit, sum)) {
 			System.out.println("%nTúllépted a megadott limitet a %,d Ft összeggel!%n".formatted(sum - limit));

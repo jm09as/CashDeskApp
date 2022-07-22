@@ -41,7 +41,7 @@
 			Add meg a pénztár napját:<input type="text" name="day" placeholder="pl: 12" required> <br>
 			<input type="submit" value="tovább">
 		</form>
-	</div>
+	       </div>
 		</div>
 	</c:if>
 	<c:if test="${ordinal == 1}">

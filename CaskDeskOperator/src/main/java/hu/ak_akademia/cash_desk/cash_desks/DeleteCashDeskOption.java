@@ -49,11 +49,6 @@ class DeleteCashDeskOption extends AbstractMenuOption {
 	}
 
 	@Override
-	public int getId() {
-		return MenuOptions.DELETE.ordinal();
-	}
-
-	@Override
 	public List<String> process(List<String> list, CashDesk cashDesk) {
 		List<String> message = new ArrayList<>();
 		CashDesk cashD = null;

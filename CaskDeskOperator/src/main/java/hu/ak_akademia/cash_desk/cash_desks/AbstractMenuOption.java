@@ -14,7 +14,6 @@ import hu.ak_akademia.cash_desk_main.MySQLUtils;
 
 abstract class AbstractMenuOption implements MenuOption, AutoCloseable {
 
-	private static final String SELECT_ALL = "SELECT * FROM cash_desks.cash_desk";
 	public PreparedStatement select;
 	public PreparedStatement delete;
 	public PreparedStatement insert;
@@ -40,22 +39,22 @@ abstract class AbstractMenuOption implements MenuOption, AutoCloseable {
 		return -1;
 	}
 
-	public List<CashDesk> getAllCashDesk() {
-		List<CashDesk> list = new ArrayList<>();
-		try (PreparedStatement ps = MySQLUtils.getMySQLConnection().prepareStatement(SELECT_ALL)) {
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(CashDesk.builder() //
-						.withCashDeskName(rs.getString(2)) //
-						.withIdNumber(rs.getInt(1)) //
-						.withLimit(rs.getInt(3)) //
-						.withEntryTime((LocalDateTime) rs.getObject(4)) //
-						.build());
-			}
-		} catch (Exception e) {
-		}
-		return list;
-	}
+//	public List<CashDesk> getAllCashDesk() {
+//		List<CashDesk> list = new ArrayList<>();
+//		try (PreparedStatement ps = MySQLUtils.getMySQLConnection().prepareStatement(SELECT_ALL)) {
+//			ResultSet rs = ps.executeQuery();
+//			while (rs.next()) {
+//				list.add(CashDesk.builder() //
+//						.withCashDeskName(rs.getString(2)) //
+//						.withIdNumber(rs.getInt(1)) //
+//						.withLimit(rs.getInt(3)) //
+//						.withEntryTime((LocalDateTime) rs.getObject(4)) //
+//						.build());
+//			}
+//		} catch (Exception e) {
+//		}
+//		return list;
+//	}
 
 	public CashDesk getLastModification(List<CashDesk> list) {
 		Comparator<LocalDateTime> ldt = LocalDateTime::compareTo;

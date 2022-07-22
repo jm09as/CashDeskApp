@@ -36,7 +36,7 @@ public class Setup extends HttpServlet {
 	}
 
 	List<CashDesk> getAllCD() {
-		return Menu.getInstance().getMenuOption(MenuOptions.LOAD).getAllCashDesk();
+		return Menu.getInstance().getAllCashDesk();
 	}
 
 	CashDesk loadLastCashDesk(List<CashDesk> list) {

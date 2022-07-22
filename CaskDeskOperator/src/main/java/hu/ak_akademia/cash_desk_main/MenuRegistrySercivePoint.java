@@ -4,4 +4,6 @@ public interface MenuRegistrySercivePoint {
 
 	MenuOption[] getAllRegistryOptions();
 
+	MenuOption getRegistry(int number);
+
 }

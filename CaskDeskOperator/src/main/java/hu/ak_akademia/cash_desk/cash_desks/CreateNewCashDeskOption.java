@@ -33,7 +33,7 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 		} catch (Exception e) {
 			System.out.printf("%nHiba lépet fel az adatbevitel közben!%n" + e.getMessage());
 		}
-		return printAllCashDesk(getAllCashDesk());
+		return printAllCashDesk(Menu.getInstance().getAllCashDesk());
 	}
 
 	private int setStatement(List<String> cashDeskInfos) throws SQLException {
@@ -64,11 +64,6 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 	@Override
 	public CashDesk setup() {
 		return cashDesk;
-	}
-
-	@Override
-	public int getId() {
-		return MenuOptions.CREATE.ordinal();
 	}
 
 	public String getMsg() {

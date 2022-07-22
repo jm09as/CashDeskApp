@@ -2,7 +2,6 @@ package hu.ak_akademia_c.cash_desk_registry_management;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
 import hu.ak_akademia.cash_desk_main.MenuOption;
@@ -30,10 +29,7 @@ abstract class AbstractRegistry implements MenuOption {
 		}
 		return -1;
 	}
-
-	@Override
-	public List<CashDesk> getAllCashDesk() {
-		return null;
-	}
+	
+	abstract int getId();
 
 }

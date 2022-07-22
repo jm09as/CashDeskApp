@@ -46,7 +46,9 @@ class LoadCashDeskOption extends AbstractMenuOption {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return cashDesk == null ? List.of("Nincs ilyen nevű pénztár!") : printAllCashDesk(getAllCashDesk());
+		return cashDesk == null //
+				? List.of("Nincs ilyen nevű pénztár!") //
+				: printAllCashDesk(Menu.getInstance().getAllCashDesk()); //
 	}
 
 	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
@@ -66,11 +68,6 @@ class LoadCashDeskOption extends AbstractMenuOption {
 	@Override
 	public void close() throws SQLException {
 		select.close();
-	}
-
-	@Override
-	public int getId() {
-		return MenuOptions.LOAD.ordinal();
 	}
 
 }

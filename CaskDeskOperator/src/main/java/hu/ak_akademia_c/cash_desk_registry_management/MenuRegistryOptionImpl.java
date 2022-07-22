@@ -21,17 +21,7 @@ public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 			}
 
 			@Override
-			public int getId() {
-				return 3;
-			}
-
-			@Override
 			public List<String> process(List<String> list, CashDesk cashD) {
-				return null;
-			}
-
-			@Override
-			public List<CashDesk> getAllCashDesk() {
 				return null;
 			}
 		};

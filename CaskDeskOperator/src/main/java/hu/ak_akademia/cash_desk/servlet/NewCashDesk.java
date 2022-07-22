@@ -27,7 +27,7 @@ public class NewCashDesk extends HttpServlet {
 		var mo = Menu.getInstance().getMenuOption(moEnum);
 		var cashDesk = session.getAttribute("cdesk");
 		cashDesk = cashDesk == null ? new CashDesk() : (CashDesk) cashDesk;
-		List<CashDesk> cashDesks = mo.getAllCashDesk();
+		List<CashDesk> cashDesks = loadAllCashDesk();
 		session.setAttribute("cashDesks", cashDesks);
 		session.setAttribute("mo", mo);
 		session.setAttribute("cdesk", cashDesk);
@@ -47,6 +47,10 @@ public class NewCashDesk extends HttpServlet {
 		System.out.println(cashDesk + " cd cashdesk.java");
 		System.out.println(mo + " mo cashdesk.java");
 		request.getRequestDispatcher(jsp).forward(request, response);
+	}
+	
+	private List<CashDesk> loadAllCashDesk() {
+		return Menu.getInstance().getAllCashDesk();
 	}
 
 }

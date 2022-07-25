@@ -3,16 +3,15 @@ package hu.ak_akademia.cash_desk.cash_desks;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
-import hu.ak_akademia.cash_desk_main.MenuOptions;
 import hu.ak_akademia.cash_desk_main.MySQLUtils;
 
 class LoadCashDeskOption extends AbstractMenuOption {
 
 	private static final String SELECTOR = "SELECT * FROM cash_desks.cash_desk where name = ?";
+//	private String msg;
 
 	@Override
 	public String getName() {
@@ -21,7 +20,7 @@ class LoadCashDeskOption extends AbstractMenuOption {
 	}
 
 	@Override
-	public List<String> process(List<String> list, CashDesk cashD) {
+	public void process(List<String> list, CashDesk cashD) {
 		cashDesk = null;
 		try (Connection con = MySQLUtils.getMySQLConnection()) {
 			select = con.prepareStatement(SELECTOR);
@@ -36,7 +35,7 @@ class LoadCashDeskOption extends AbstractMenuOption {
 						.build();//
 			}
 			if (cashD == null) {
-				return List.of("Nincs ilyen nevű pénztár!");
+//				msg = "Nincs ilyen nevű pénztár!";
 			}
 			cashDesk = cashD;
 			limitTester(cashDesk.getLimit(), countCashDeskSum(cashDesk));
@@ -46,19 +45,16 @@ class LoadCashDeskOption extends AbstractMenuOption {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return cashDesk == null //
-				? List.of("Nincs ilyen nevű pénztár!") //
-				: printAllCashDesk(Menu.getInstance().getAllCashDesk()); //
 	}
 
-	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
-		List<String> result = new ArrayList<>();
-		result.add("%n %15s %5s %15s %25s %n".formatted("NAME", "ID", "LIMIT", "BEJEGYZÉS IDEJE"));
-		for (var cd : allCashDesks) {
-			result.add(" %15s %5d %,15d Ft %25s %n".formatted(cd.getCashDeskName(), cd.getIdNumber(), cd.getLimit(), cd.getEntryTime()));
-		}
-		return result;
-	}
+//	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
+//		List<String> result = new ArrayList<>();
+//		result.add("%n %15s %5s %15s %25s %n".formatted("NAME", "ID", "LIMIT", "BEJEGYZÉS IDEJE"));
+//		for (var cd : allCashDesks) {
+//			result.add(" %15s %5d %,15d Ft %25s %n".formatted(cd.getCashDeskName(), cd.getIdNumber(), cd.getLimit(), cd.getEntryTime()));
+//		}
+//		return result;
+//	}
 
 	@Override
 	public CashDesk setup() {

@@ -17,8 +17,7 @@ class RegistryManagmentOption extends AbstractMenuOption {
 	}
 
 	@Override
-	public List<String> process(List<String> list, CashDesk cashD) {
-		return null;
+	public void process(List<String> list, CashDesk cashD) {
 	}
 
 }

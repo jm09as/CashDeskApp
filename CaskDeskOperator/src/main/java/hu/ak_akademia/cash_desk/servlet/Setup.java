@@ -26,12 +26,12 @@ public class Setup extends HttpServlet {
 		session.setAttribute("menuenum", MenuOptions.values());
 		var moEnum = (MenuOptions) session.getAttribute("moenum");
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
-		System.out.println(cashDesk + " cashDesk setup.java");
 		session.setAttribute("allcashdesk", getAllCD());
 		session.setAttribute("moenum", moEnum = moEnum == null ? MenuOptions.QUIT : moEnum);
 		session.setAttribute("ordinal", moEnum.ordinal());
 		System.out.println(moEnum + " moEnum setup.java");
-		session.setAttribute("cdesk", cashDesk == null ? loadLastCashDesk(getAllCD()) : cashDesk);
+		session.setAttribute("cdesk",cashDesk = cashDesk == null ? loadLastCashDesk(getAllCD()) : cashDesk);
+		System.out.println(cashDesk + " cashDesk setup.java");
 		request.getRequestDispatcher("setup.jsp").forward(request, response);
 	}
 

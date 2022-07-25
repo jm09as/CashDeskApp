@@ -27,7 +27,6 @@ public class Delete extends HttpServlet {
 		List<String> list = new ArrayList<>();
 		list.add(request.getParameter("name"));
 		mo.process(list, cashDesk);
-//		session.setAttribute("result", result);
 		request.getRequestDispatcher("setup").forward(request, response);
 	}
 

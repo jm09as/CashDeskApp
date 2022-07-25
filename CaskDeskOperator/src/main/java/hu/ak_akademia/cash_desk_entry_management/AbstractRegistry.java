@@ -1,4 +1,4 @@
-package hu.ak_akademia_c.cash_desk_registry_management;
+package hu.ak_akademia.cash_desk_entry_management;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,6 +30,4 @@ abstract class AbstractRegistry implements MenuOption {
 		return -1;
 	}
 	
-	abstract int getId();
-
 }

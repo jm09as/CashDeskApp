@@ -26,7 +26,6 @@ public class Load extends HttpServlet {
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
 		mo.process(list, cashDesk);
 		cashDesk = mo.setup();
-//		session.setAttribute("result", result);
 		session.setAttribute("cdesk", cashDesk);
 		request.getRequestDispatcher("setup").forward(request, response);
 	}

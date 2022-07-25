@@ -10,20 +10,33 @@
 	<h2>${cdesk.cashDeskName} pénztár Menü</h2>
 	<div>
 		<form action="selectoption" method="get">
-			<select name="nameid">
-				<c:forEach var="registryOption" items="${regmenu}">
-					<option value="${registryOption.id}">${registryOption.name}</option>
-				</c:forEach>
-			</select>
-			<p>
-				<input type="submit" value="tovább">
-			</p>
+			<c:set var="num" scope="session" value="-1"></c:set>
+			<c:forEach var="registryOption" items="${regmenu}">
+				<button type="submit" name="registryid" value="${num = num + 1}">${registryOption.name}</button>
+			</c:forEach>
 		</form>
 	</div>
 	<div>
-		<form action="setup">
-			<input type="submit" value="vissza">
+		<c:if test="${registryid == 0}">
+		<div>
+		<form action="newregistry" method="get">	
+			Add meg a bejegyzés nevét:<input type="text" name="name" required> <br>	
+			Add meg a bejegyzés összegét:<input type="number" name="sum" required> <br>
+			<input type="submit" value="tovább">
 		</form>
+	</div>
+		</c:if>
+	</div>
+	<div>
+		<c:if test="${registryid == 1}">
+		<div>
+		<form action="newregistry" method="get">	
+			Add meg a bejegyzés nevét:<input type="text" name="name" required> <br>	
+			Add meg a bejegyzés összegét:<input type="number" name="sum" required> <br>
+			<input type="submit" value="tovább">
+		</form>
+	</div>
+		</c:if>
 	</div>
 </body>
 </html>

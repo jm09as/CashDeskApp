@@ -1,14 +1,15 @@
 package hu.ak_akademia.registry.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hu.ak_akademia.cash_desk_entry_management.MenuRegistryOptionImpl;
 import hu.ak_akademia.cash_desk_main.MenuOption;
-import hu.ak_akademia_c.cash_desk_registry_management.MenuRegistryOptionImpl;
 
 @WebServlet("/registry")
 

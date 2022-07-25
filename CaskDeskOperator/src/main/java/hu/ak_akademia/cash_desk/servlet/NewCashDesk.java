@@ -22,17 +22,16 @@ public class NewCashDesk extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var session = request.getSession(false);
 		var enumName = request.getParameter("moenum");
-		System.out.println(enumName + "enumName cashdesk.java");
-		var moEnum = MenuOptions.valueOf(enumName);
-		var mo = Menu.getInstance().getMenuOption(moEnum);
+		System.out.println(enumName + " enumName cashdesk.java");
+		var menuOptionsEnum = MenuOptions.valueOf(enumName);
+		var menuOption = Menu.getInstance().getMenuOption(menuOptionsEnum);
 		var cashDesk = session.getAttribute("cdesk");
 		cashDesk = cashDesk == null ? new CashDesk() : (CashDesk) cashDesk;
-		List<CashDesk> cashDesks = loadAllCashDesk();
-		session.setAttribute("cashDesks", cashDesks);
-		session.setAttribute("mo", mo);
+		session.setAttribute("cashDesks", loadAllCashDesk());
+		session.setAttribute("mo", menuOption);
 		session.setAttribute("cdesk", cashDesk);
-		session.setAttribute("moenum", moEnum);
-		switch (moEnum) {
+		session.setAttribute("moenum", menuOptionsEnum);
+		switch (menuOptionsEnum) {
 			case CREATE -> loadCashDeskOption(request, response, "setup");
 			case LOAD -> loadCashDeskOption(request, response, "setup");
 			case DELETE -> loadCashDeskOption(request, response, "setup");

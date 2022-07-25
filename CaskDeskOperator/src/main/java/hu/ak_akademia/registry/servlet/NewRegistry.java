@@ -22,9 +22,9 @@ public class NewRegistry extends HttpServlet {
 		var mo = (MenuOption) session.getAttribute("mo");
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
 		List<String> list = List.of(request.getParameter("name"), request.getParameter("sum"));
-		List<String> result = mo.process(list, cashDesk);
-		session.setAttribute("result", result);
-		request.getRequestDispatcher("result.jsp").forward(request, response);
+		mo.process(list, cashDesk);
+//		session.setAttribute("result", result);
+		request.getRequestDispatcher("registry.jsp").forward(request, response);
 	}
 
 }

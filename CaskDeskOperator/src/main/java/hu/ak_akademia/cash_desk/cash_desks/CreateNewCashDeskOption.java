@@ -5,11 +5,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
-import hu.ak_akademia.cash_desk_main.MenuOptions;
 import hu.ak_akademia.cash_desk_main.MySQLUtils;
 
 class CreateNewCashDeskOption extends AbstractMenuOption {
@@ -22,7 +20,7 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 		return "Új pénztár felvétele";
 	}
 
-	public List<String> process(List<String> list, CashDesk cashD) {
+	public void process(List<String> list, CashDesk cashD) {
 		cashDesk = cashD;
 		try (Connection con = MySQLUtils.getMySQLConnection()) {
 			insert = con.prepareStatement(newCaskDesk);
@@ -33,7 +31,6 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 		} catch (Exception e) {
 			System.out.printf("%nHiba lépet fel az adatbevitel közben!%n" + e.getMessage());
 		}
-		return printAllCashDesk(Menu.getInstance().getAllCashDesk());
 	}
 
 	private int setStatement(List<String> cashDeskInfos) throws SQLException {
@@ -46,15 +43,15 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 		return insert.executeUpdate();
 	}
 
-	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
-		List<String> result = new ArrayList<>();
-		result.add("%n %15s %5s %15s %25s %n".formatted("NAME", "ID", "LIMIT", "BEJEGYZÉS IDEJE"));
-		for (var cd : allCashDesks) {
-			result.add(" %15s %5d %,15d Ft %25s" //
-					.formatted(cd.getCashDeskName(), cd.getIdNumber(), cd.getLimit(), cd.getEntryTime()));
-		}
-		return result;
-	}
+//	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
+//		List<String> result = new ArrayList<>();
+//		result.add("%n %15s %5s %15s %25s %n".formatted("NAME", "ID", "LIMIT", "BEJEGYZÉS IDEJE"));
+//		for (var cd : allCashDesks) {
+//			result.add(" %15s %5d %,15d Ft %25s" //
+//					.formatted(cd.getCashDeskName(), cd.getIdNumber(), cd.getLimit(), cd.getEntryTime()));
+//		}
+//		return result;
+//	}
 
 	@Override
 	public void close() throws SQLException {

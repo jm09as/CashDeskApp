@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
-import hu.ak_akademia.cash_desk_main.MenuOptions;
 import hu.ak_akademia.cash_desk_main.MySQLUtils;
 
 class DeleteCashDeskOption extends AbstractMenuOption {
@@ -49,14 +48,12 @@ class DeleteCashDeskOption extends AbstractMenuOption {
 	}
 
 	@Override
-	public List<String> process(List<String> list, CashDesk cashDesk) {
+	public void process(List<String> list, CashDesk cashDesk) {
 		List<String> message = new ArrayList<>();
 		CashDesk cashD = null;
 		this.cashDesk = cashDesk;
 		try (Connection con = MySQLUtils.getMySQLConnection()) {
 			cashD = chooseCashDeskToDelete(list.get(0), cashD, con);
-//			System.out.println(cashD.getIdNumber());
-//			System.out.println(cashDesk.getIdNumber());
 			System.out.println("test");
 			if (cashD != null && cashDesk.getIdNumber() != cashD.getIdNumber()) {
 				deleteFromTable(cashD, deleteRegistry, con);
@@ -71,7 +68,6 @@ class DeleteCashDeskOption extends AbstractMenuOption {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return message;
 	}
 
 }

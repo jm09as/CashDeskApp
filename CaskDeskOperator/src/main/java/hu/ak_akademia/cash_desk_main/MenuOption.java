@@ -9,7 +9,7 @@ public interface MenuOption {
 
 	String getName();
 
-	List<String> process(List<String> list,CashDesk cashD);
+	void process(List<String> list,CashDesk cashD);
 
 	CashDesk setup();
 

@@ -3,10 +3,6 @@ package hu.ak_akademia.cash_desk.cash_desks;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
 import hu.ak_akademia.cash_desk_main.MenuOption;
@@ -56,9 +52,9 @@ abstract class AbstractMenuOption implements MenuOption, AutoCloseable {
 //		return list;
 //	}
 
-	public CashDesk getLastModification(List<CashDesk> list) {
-		Comparator<LocalDateTime> ldt = LocalDateTime::compareTo;
-		return list.stream().sorted((cd1, cd2) -> ldt.compare(cd1.getEntryTime(), cd2.getEntryTime())) //
-				.toList().get(list.size() - 1);
-	}
+//	public CashDesk getLastModification(List<CashDesk> list) {
+//		Comparator<LocalDateTime> ldt = LocalDateTime::compareTo;
+//		return list.stream().sorted((cd1, cd2) -> ldt.compare(cd1.getEntryTime(), cd2.getEntryTime())) //
+//				.toList().get(list.size() - 1);
+//	}
 }

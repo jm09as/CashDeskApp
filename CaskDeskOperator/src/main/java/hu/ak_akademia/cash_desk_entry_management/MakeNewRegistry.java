@@ -1,4 +1,4 @@
-package hu.ak_akademia_c.cash_desk_registry_management;
+package hu.ak_akademia.cash_desk_entry_management;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ class MakeNewRegistry extends AbstractRegistry {
 	}
 
 	@Override
-	public List<String> process(List<String> list, CashDesk cashD) {
+	public void process(List<String> list, CashDesk cashD) {
 		List<String> result = new ArrayList<>();
 		try (var con = MySQLUtils.getMySQLConnection(); var preSta = con.prepareStatement(insert);) {
 			preSta.setInt(1, cashD.getIdNumber());
@@ -35,7 +35,6 @@ class MakeNewRegistry extends AbstractRegistry {
 			System.out.println(e.getMessage());
 		}
 		result.add(0, "A bejegyzés sikeresen hozzá lett adva!");
-		return result;
 	}
 
 	private void updateCashDeskTime(Connection con, CashDesk cashDesk) throws SQLException {
@@ -45,11 +44,6 @@ class MakeNewRegistry extends AbstractRegistry {
 			timeRefresh.setInt(2, cashDesk.getIdNumber());
 			timeRefresh.executeUpdate();
 		}
-	}
-
-	@Override
-	public int getId() {
-		return 0;
 	}
 
 }

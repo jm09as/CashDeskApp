@@ -28,8 +28,7 @@ public class Menu implements MenuSercivePoint {
 			}
 
 			@Override
-			public List<String> process(List<String> list, CashDesk cashD) {
-				return null;
+			public void process(List<String> list, CashDesk cashD) {
 			}
 		};
 	}
@@ -79,8 +78,8 @@ public class Menu implements MenuSercivePoint {
 	@Override
 	public List<CashDesk> getAllCashDesk() {
 		List<CashDesk> list = new ArrayList<>();
-		try (PreparedStatement ps = MySQLUtils.getMySQLConnection().prepareStatement(SELECT_ALL)) {
-			ResultSet rs = ps.executeQuery();
+		try (PreparedStatement ps = MySQLUtils.getMySQLConnection().prepareStatement(SELECT_ALL) //
+				; ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
 				list.add(CashDesk.builder() //
 						.withCashDeskName(rs.getString(2)) //

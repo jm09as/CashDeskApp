@@ -1,7 +1,6 @@
-package hu.ak_akademia_c.cash_desk_registry_management;
+package hu.ak_akademia.cash_desk_entry_management;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
@@ -17,23 +16,14 @@ class RegistryDelete extends AbstractRegistry {
 	}
 
 	@Override
-	public List<String> process(List<String> list, CashDesk cashD) {
-		List<String> msg = new ArrayList<>();
+	public void process(List<String> list, CashDesk cashD) {
 		try (var con = MySQLUtils.getMySQLConnection(); var del = con.prepareStatement(REG_DELETE)) {
 			int registryId = Integer.parseInt(list.get(0));
 			del.setInt(1, cashD.getIdNumber());
 			del.setInt(2, registryId);
-			int result = del.executeUpdate();
-			msg.add("%n%s törölni a %s pénztár egyik bejegyzését!%n" //
-					.formatted(result != 0 ? "Sikerült" : "Nem sikerült", cashD.getCashDeskName()));
+			del.executeUpdate();
 		} catch (SQLException e) {
 		}
-		return msg;
-	}
-
-	@Override
-	public int getId() {
-		return 1;
 	}
 
 }

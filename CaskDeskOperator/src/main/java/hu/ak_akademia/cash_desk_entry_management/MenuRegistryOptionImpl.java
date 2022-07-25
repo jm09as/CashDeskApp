@@ -1,4 +1,4 @@
-package hu.ak_akademia_c.cash_desk_registry_management;
+package hu.ak_akademia.cash_desk_entry_management;
 
 import java.util.List;
 
@@ -21,8 +21,7 @@ public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 			}
 
 			@Override
-			public List<String> process(List<String> list, CashDesk cashD) {
-				return null;
+			public void process(List<String> list, CashDesk cashD) {
 			}
 		};
 	}

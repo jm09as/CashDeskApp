@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
-import hu.ak_akademia.cash_desk_main.MenuOption;
+import hu.ak_akademia.cash_desk_main.EntryOption;
 
 @WebServlet("/delregistry")
 
@@ -20,12 +20,13 @@ public class DelRegistry extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var session = request.getSession(false);
-		var mo = (MenuOption) session.getAttribute("mo");
+		var mo = (EntryOption) session.getAttribute("mo");
 		var cashDesk = (CashDesk) session.getAttribute("cdesk");
-		List<String> list = List.of(request.getParameter("id"));
+		List<String> list = List.of(request.getParameter("delid"));
 		mo.process(list, cashDesk);
-//		session.setAttribute("result", result);
-		request.getRequestDispatcher("result.jsp").forward(request, response);
+		mo.run(cashDesk);
+		session.setAttribute("entrylist", mo.getAllEntry());
+		request.getRequestDispatcher("registry.jsp").forward(request, response);
 
 	}
 

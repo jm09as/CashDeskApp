@@ -9,15 +9,17 @@ public interface MenuOption {
 
 	String getName();
 
-	void process(List<String> list,CashDesk cashD);
+	void process(List<String> list, CashDesk cashD);
 
 	CashDesk setup();
 
-	default void limitTester(int limit, int sum) {
-		if (LIMIT_TESTER.test(limit, sum)) {
-			System.out.println("%nTúllépted a megadott limitet a %,d Ft összeggel!%n".formatted(sum - limit));
-		}
-	}
+	String limitMessage();
 
+	default String limitTester(int limit, int sum) {
+		if (LIMIT_TESTER.test(limit, sum)) {
+			return "A pénztár túllépte a limitet %,d Ft összeggel!".formatted(sum - limit);
+		}
+		return "A pénztár a limittől %,d Ft összeggel elmarad.".formatted(Math.abs(sum - limit));
+	}
 
 }

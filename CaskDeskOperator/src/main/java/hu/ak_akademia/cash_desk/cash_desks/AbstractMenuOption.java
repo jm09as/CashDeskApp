@@ -15,6 +15,7 @@ abstract class AbstractMenuOption implements MenuOption, AutoCloseable {
 	public PreparedStatement insert;
 	public ResultSet rs;
 	public CashDesk cashDesk;
+	public String msg;
 
 	@Override
 	public void close() throws SQLException {
@@ -35,26 +36,7 @@ abstract class AbstractMenuOption implements MenuOption, AutoCloseable {
 		return -1;
 	}
 
-//	public List<CashDesk> getAllCashDesk() {
-//		List<CashDesk> list = new ArrayList<>();
-//		try (PreparedStatement ps = MySQLUtils.getMySQLConnection().prepareStatement(SELECT_ALL)) {
-//			ResultSet rs = ps.executeQuery();
-//			while (rs.next()) {
-//				list.add(CashDesk.builder() //
-//						.withCashDeskName(rs.getString(2)) //
-//						.withIdNumber(rs.getInt(1)) //
-//						.withLimit(rs.getInt(3)) //
-//						.withEntryTime((LocalDateTime) rs.getObject(4)) //
-//						.build());
-//			}
-//		} catch (Exception e) {
-//		}
-//		return list;
-//	}
-
-//	public CashDesk getLastModification(List<CashDesk> list) {
-//		Comparator<LocalDateTime> ldt = LocalDateTime::compareTo;
-//		return list.stream().sorted((cd1, cd2) -> ldt.compare(cd1.getEntryTime(), cd2.getEntryTime())) //
-//				.toList().get(list.size() - 1);
-//	}
+	public String limitMessage() {
+		return msg;
+	}
 }

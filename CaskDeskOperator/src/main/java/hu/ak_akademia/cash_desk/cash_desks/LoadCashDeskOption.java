@@ -11,7 +11,6 @@ import hu.ak_akademia.cash_desk_main.MySQLUtils;
 class LoadCashDeskOption extends AbstractMenuOption {
 
 	private static final String SELECTOR = "SELECT * FROM cash_desks.cash_desk where name = ?";
-//	private String msg;
 
 	@Override
 	public String getName() {
@@ -38,7 +37,7 @@ class LoadCashDeskOption extends AbstractMenuOption {
 //				msg = "Nincs ilyen nevű pénztár!";
 			}
 			cashDesk = cashD;
-			limitTester(cashDesk.getLimit(), countCashDeskSum(cashDesk));
+			msg = limitTester(cashDesk.getLimit(), countCashDeskSum(cashDesk));
 			System.out.println(cashDesk.getIdNumber());
 			close();
 			rs.close();

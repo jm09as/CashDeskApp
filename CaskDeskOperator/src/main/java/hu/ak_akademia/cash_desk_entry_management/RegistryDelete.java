@@ -22,6 +22,7 @@ class RegistryDelete extends AbstractRegistry {
 			del.setInt(1, cashD.getIdNumber());
 			del.setInt(2, registryId);
 			del.executeUpdate();
+			msg = limitTester(cashD.getLimit(), countCashDeskSum(cashD));
 		} catch (SQLException e) {
 		}
 	}

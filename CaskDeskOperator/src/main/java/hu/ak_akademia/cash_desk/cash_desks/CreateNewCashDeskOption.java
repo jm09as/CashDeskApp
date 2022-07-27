@@ -1,6 +1,6 @@
 package hu.ak_akademia.cash_desk.cash_desks;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,9 +22,9 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 
 	public void process(List<String> list, CashDesk cashD) {
 		cashDesk = cashD;
-		try (Connection con = MySQLUtils.getMySQLConnection()) {
-			insert = con.prepareStatement(newCaskDesk);
-			msg = "%s".formatted(setStatement(list) == 0 ? "nem sikerült" : "sikerült");
+		try (var con = MySQLUtils.getMySQLConnection() //
+				; var insert = con.prepareStatement(newCaskDesk)) {
+			msg = "%s".formatted(insertNewCashDesk(list, insert) == 0 ? "nem sikerült" : "sikerült");
 			close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -33,29 +33,14 @@ class CreateNewCashDeskOption extends AbstractMenuOption {
 		}
 	}
 
-	private int setStatement(List<String> cashDeskInfos) throws SQLException {
-		LocalDate setDate = LocalDate.of(Integer.parseInt(cashDeskInfos.get(2)), //
-				Integer.parseInt(cashDeskInfos.get(3)), //
-				Integer.parseInt(cashDeskInfos.get(4)));
-		insert.setString(1, cashDeskInfos.get(0));
-		insert.setInt(2, Integer.parseInt(cashDeskInfos.get(1)));
+	private int insertNewCashDesk(List<String> cashDeskData, PreparedStatement insert) throws SQLException {
+		LocalDate setDate = LocalDate.of(Integer.parseInt(cashDeskData.get(2)), //
+				Integer.parseInt(cashDeskData.get(3)), //
+				Integer.parseInt(cashDeskData.get(4)));
+		insert.setString(1, cashDeskData.get(0));
+		insert.setInt(2, Integer.parseInt(cashDeskData.get(1)));
 		insert.setString(3, LocalDateTime.of(setDate, LocalTime.now()).toString());
 		return insert.executeUpdate();
-	}
-
-//	private List<String> printAllCashDesk(List<CashDesk> allCashDesks) {
-//		List<String> result = new ArrayList<>();
-//		result.add("%n %15s %5s %15s %25s %n".formatted("NAME", "ID", "LIMIT", "BEJEGYZÉS IDEJE"));
-//		for (var cd : allCashDesks) {
-//			result.add(" %15s %5d %,15d Ft %25s" //
-//					.formatted(cd.getCashDeskName(), cd.getIdNumber(), cd.getLimit(), cd.getEntryTime()));
-//		}
-//		return result;
-//	}
-
-	@Override
-	public void close() throws SQLException {
-		insert.close();
 	}
 
 	@Override

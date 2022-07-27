@@ -30,6 +30,11 @@ public class Menu implements MenuSercivePoint {
 			@Override
 			public void process(List<String> list, CashDesk cashD) {
 			}
+
+			@Override
+			public String limitMessage() {
+				return null;
+			}
 		};
 	}
 

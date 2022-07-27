@@ -3,17 +3,15 @@ package hu.ak_akademia.cash_desk_entry_management;
 import java.util.List;
 
 import hu.ak_akademia.cash_desk_main.CashDesk;
+import hu.ak_akademia.cash_desk_main.Entry;
+import hu.ak_akademia.cash_desk_main.EntryOption;
 import hu.ak_akademia.cash_desk_main.MenuOption;
 import hu.ak_akademia.cash_desk_main.MenuRegistrySercivePoint;
 
 public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 
 	static {
-		EXIT = new MenuOption() {
-			@Override
-			public String getName() {
-				return "vissza a főmenübe";
-			}
+		EXIT = new EntryOption() {
 
 			@Override
 			public CashDesk setup() {
@@ -23,11 +21,30 @@ public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 			@Override
 			public void process(List<String> list, CashDesk cashD) {
 			}
+
+			@Override
+			public String getName() {
+				return "vissza a főmenübe";
+			}
+
+			@Override
+			public List<Entry> getAllEntry() {
+				return null;
+			}
+
+			@Override
+			public void run(CashDesk cashD) {
+			}
+
+			@Override
+			public String limitMessage() {
+				return null;
+			}
 		};
 	}
 
-	private static final MenuOption EXIT;
-	private static final MenuOption[] ALL_REGISTERY_MANAGEMENT = { //
+	private static final EntryOption EXIT;
+	private static final EntryOption[] ALL_REGISTERY_MANAGEMENT = { //
 			new MakeNewRegistry(), //
 			new RegistryDelete(), //
 			new RegistryToList(), //
@@ -47,7 +64,7 @@ public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 		return ALL_REGISTERY_MANAGEMENT;
 	}
 
-	public MenuOption getRegistry(int number) {
+	public EntryOption getRegistry(int number) {
 		for (int i = 0; i < ALL_REGISTERY_MANAGEMENT.length; i++) {
 			if (number == i) {
 				return ALL_REGISTERY_MANAGEMENT[i];
@@ -55,14 +72,5 @@ public class MenuRegistryOptionImpl implements MenuRegistrySercivePoint {
 		}
 		return null;
 	}
-
-//	public void printRegistryMenu() {
-//		int i = 1;
-//		StringBuilder result = new StringBuilder("%n%s%n".formatted("-- Bejegyzések kezelése --"));
-//		for (var rm : ALL_REGISTERY_MANAGEMENT) {
-//			result.append("  %d. %s%n".formatted(i++, rm.getName()));
-//		}
-//		System.out.println(result);
-//	}
-
+	
 }

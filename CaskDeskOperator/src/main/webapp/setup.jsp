@@ -28,6 +28,9 @@
 			A betöltött pénztár utolsó módosítása:
 			<fmt:formatDate type="both" dateStyle="medium" timeStyle="medium" value="${cdesk.entryDate}" />
 		</p>
+		<p>
+			${msg} 
+		</p>
 	</div>
 	<c:set var="ordinal" scope="session" value="${ordinal}" />
 	<c:if test="${ordinal == 0}">
